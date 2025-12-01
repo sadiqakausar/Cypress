@@ -13,7 +13,7 @@ export default class ProductsPage {
   }
 
   verifyBackpackInCart() {
-    cy.get('.shopping_cart_badge').should('contain', '1')
+    cy.get(cartBadge).should('contain', '1')
   }
 
   goToCart() {

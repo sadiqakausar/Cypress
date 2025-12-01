@@ -2,6 +2,7 @@ const userNameSelector = '[data-test="username"]'
 const passwordSelector = '[data-test="password"]'
 const submitBtnSelector = '[data-test="login-button"]'
 const errorMessageSelector = '[data-test="error"]'
+
 export default class LoginPage {
 
   visit() {
@@ -24,7 +25,17 @@ export default class LoginPage {
     this.enterUsername(username);
     this.enterPassword(password);
     this.clickLogin();
+  }
+
+  loginSuccessful(username, password) {
+    this.login(username, password);
     cy.url().should('include', '/inventory.html')
+  }
+
+  loginWithError(username, password) {
+    this.login(username, password);
+    this.getErrorMessage().should('be.visible')
+      .and('contain.text', 'Epic sadface:')
   }
 
   getErrorMessage() {

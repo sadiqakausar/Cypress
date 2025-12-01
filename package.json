@@ -1,7 +1,17 @@
 {
+  "scripts": {
+    "test": "cypress run",
+    "test:headed": "cypress run --headed",
+    "report:merge": "mochawesome-merge cypress/reports/mochawesome*.json -o cypress/reports/merged-report.json",
+    "report:generate": "marge cypress/reports/merged-report.json --reportDir cypress/reports --inline",
+    "test:report": "npm run test && npm run report:merge && npm run report:generate"
+  },
   "devDependencies": {
     "cypress": "^15.7.0",
-    "cypress-cucumber-preprocessor": "^4.3.1"
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.0",
+    "mochawesome-report-generator": "^6.3.2"
   },
   "cypress-cucumber-preprocessor": {
     "stepDefinitions": "cypress/integration/examples/stepdefs"
